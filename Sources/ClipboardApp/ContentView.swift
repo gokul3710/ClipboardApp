@@ -1,20 +1,22 @@
-// swift-tools-version: 5.8
-import PackageDescription
+import SwiftUI
 
-let package = Package(
-    name: "ClipboardApp",
-    platforms: [
-        .macOS(.v12)
-    ],
-    dependencies: [],
-    targets: [
-        .executableTarget(
-            name: "ClipboardApp",
-            dependencies: [],
-            path: "Sources/ClipboardApp",
-            swiftSettings: [
-                .unsafeFlags(["-parse-as-library"]) // Allow `@main` attribute in SwiftUI
-            ]
-        )
-    ]
-)
+struct ContentView: View {
+    @EnvironmentObject var clipboardManager: ClipboardManager
+
+    var body: some View {
+        VStack {
+            Text("Clipboard History")
+                .font(.headline)
+                .padding()
+
+            List(clipboardManager.clipboardHistory, id: \.self) { item in
+                Text(item)
+                    .lineLimit(1)
+                    .truncationMode(.tail)
+            }
+            .listStyle(PlainListStyle())
+        }
+        .padding()
+        .frame(minWidth: 300, minHeight: 400)
+    }
+}
