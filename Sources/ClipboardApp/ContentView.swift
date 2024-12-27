@@ -11,8 +11,6 @@ struct ContentView: View {
 
             List(clipboardManager.clipboardHistory, id: \.self) { item in
                 Text(item)
-                    .lineLimit(1)
-                    .truncationMode(.tail)
             }
             .listStyle(PlainListStyle())
         }
