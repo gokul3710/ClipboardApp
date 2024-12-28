@@ -23,4 +23,16 @@ class ClipboardManager: ObservableObject {
             }
         }
     }
+
+    func moveToTop(index: Int) {
+        guard index >= 0 && index < clipboardHistory.count else { return }
+        let item = clipboardHistory.remove(at: index)
+
+        // Copy the selected item back to the clipboard
+        NSPasteboard.general.clearContents()
+        NSPasteboard.general.setString(item, forType: .string)
+
+        // Move the item to the top of the list
+        // clipboardHistory.insert(item, at: 0)
+    }
 }
