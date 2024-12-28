@@ -31,6 +31,8 @@ struct ContentView: View {
     }
 }
 
+import SwiftUI
+
 struct CardView: View {
     let text: String
     let onCopy: () -> Void
@@ -38,11 +40,13 @@ struct CardView: View {
     var body: some View {
         VStack {
             Text(text)
+                .font(.body)
+                .foregroundColor(.white) // Card text color
                 .lineLimit(3)
                 .multilineTextAlignment(.center)
                 .padding()
                 .frame(maxWidth: .infinity, maxHeight: 100)
-                .background(Color.gray.opacity(0.2))
+                .background(Color.black.opacity(0.8)) // Card background color
                 .cornerRadius(8)
 
             Button(action: onCopy) {
@@ -51,13 +55,14 @@ struct CardView: View {
                     .foregroundColor(.white)
                     .padding(.vertical, 6)
                     .padding(.horizontal, 12)
-                    .background(Color.blue)
+                    .background(Color.blue) // Button background
                     .cornerRadius(8)
             }
         }
         .padding()
-        .background(Color.white)
+        .background(Color.gray.opacity(0.2)) // Outer card background
         .cornerRadius(12)
-        .shadow(radius: 2)
+        .shadow(radius: 4) // Subtle shadow
     }
 }
+
